@@ -1,0 +1,50 @@
+{
+	"ret": 1,
+	"apiver": 9,
+	"name": "今天做什么",
+	"version": "1.0.0",
+	"version_id": 1,
+	"author": "雨宫时雨",
+	"description": "让创作者及时向群里汇报这一天做了什么，接受大家的监督，从此告别咕咕咕。",
+	"event": [
+		{
+			"id": 1,
+			"type": 21,
+			"name": "私聊消息处理",
+			"function": "_eventPrivateMsg",
+			"priority": 30000
+		},
+		{
+			"id": 2,
+			"type": 2,
+			"name": "群消息处理",
+			"function": "_eventGroupMsg",
+			"priority": 30000
+		},
+		{
+			"id": 1003,
+			"type": 1003,
+			"name": "应用已被启用",
+			"priority": 30000,
+			"function": "_eventEnable"
+		},
+		{
+			"id": 1004,
+			"type": 1004,
+			"name": "应用将被停用",
+			"priority": 30000,
+			"function": "_eventDisable"
+		}
+	],
+	"menu": [
+		{
+			"name": "设置A",
+			"function": "_menuA"
+		}
+	],
+	"status": [],
+	"auth": [
+		101,
+		106
+	]
+}

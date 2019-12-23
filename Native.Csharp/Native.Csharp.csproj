@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Native.Csharp</RootNamespace>
-    <AssemblyName>Native.Csharp</AssemblyName>
+    <AssemblyName>cx.rain.cqp.whatdidtoday</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -62,15 +62,17 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -99,27 +101,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Common.cs" />
-    <Compile Include="App\Core\LibExport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LibExport.tt</DependentUpon>
+    <Compile Include="App\Common\AppInfo.cs" />
+    <Compile Include="App\Common\AppData.cs" />
+    <Compile Include="App\Configure\Config.cs" />
+    <Compile Include="App\Configure\Data.cs" />
+    <Compile Include="App\Event\EventAppDisable.cs" />
+    <Compile Include="App\Event\EventAppEnable.cs" />
+    <Compile Include="App\Event\EventGroupUrge.cs" />
+    <Compile Include="App\Event\EventMenuCall.cs" />
+    <Compile Include="App\Event\EventGroupQuery.cs" />
+    <Compile Include="App\Event\EventPrivateMessage.cs" />
+    <Compile Include="App\Export\CQEventExport.cs">
+      <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Core\MenuExport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MenuExport.tt</DependentUpon>
+    <Compile Include="App\Export\CQMenuExport.cs">
+      <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Core\StatusExport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StatusExport.tt</DependentUpon>
+    <Compile Include="App\Export\CQStatusExport.cs">
+      <DependentUpon>CQExport.tt</DependentUpon>
     </Compile>
-    <Compile Include="App\Event\Event_CqAppDisable.cs" />
-    <Compile Include="App\Event\Event_CqAppEnable.cs" />
-    <Compile Include="App\Event\Event_AppMain.cs" />
-    <Compile Include="App\Event\Event_CqExit.cs" />
-    <Compile Include="App\Event\Event_CqStartup.cs" />
+    <Compile Include="App\CQMain.cs" />
+    <Compile Include="App\Menu\MenuSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\Menu\MenuSettings.Designer.cs">
+      <DependentUpon>MenuSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App\Util\Date.cs" />
+    <Compile Include="App\WhatDidToday.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repair\Core\Kernel32.cs" />
     <Compile Include="Repair\Enum\LoadLibraryFlags.cs" />
@@ -128,7 +137,12 @@
     <Compile Include="Repair\ModuleInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Native.Csharp.json">
+    <None Include="App\Export\CQExport.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQExport.tt</DependentUpon>
+    </None>
+    <None Include="cx.rain.cqp.whatdidtoday.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -143,21 +157,17 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\Core\StatusExport.tt">
+    <Content Include="App\Export\CQExport.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StatusExport.cs</LastGenOutput>
-    </Content>
-    <Content Include="App\Core\LibExport.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LibExport.cs</LastGenOutput>
-    </Content>
-    <Content Include="App\Core\MenuExport.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MenuExport.cs</LastGenOutput>
+      <LastGenOutput>CQExport.log</LastGenOutput>
     </Content>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="App\Menu\MenuSettings.resx">
+      <DependentUpon>MenuSettings.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport" />
   <ImportGroup Label=".NET DllExport" />

@@ -33,9 +33,9 @@ namespace Native.Csharp.Repair
             }
             Directory.CreateDirectory (appPath);
 
-#pragma warning disable CS0618 // 绫诲瀷鎴栨垚鍛樺凡杩囨椂
+#pragma warning disable CS0618 // 类型或成员已过时
             AppDomain.CurrentDomain.AppendPrivatePath (appPath);
-#pragma warning restore CS0618 // 绫诲瀷鎴栨垚鍛樺凡杩囨椂
+#pragma warning restore CS0618 // 类型或成员已过时
 
             Kernel32.AddDllDirectory (appPath);
 
